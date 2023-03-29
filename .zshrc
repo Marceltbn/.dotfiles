@@ -33,3 +33,4 @@ mcd() {
 
 bindkey -v
 # bindkey "n" forward-char
+# hi
