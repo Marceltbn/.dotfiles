@@ -1,0 +1,17 @@
+alias nt='nvim ~/tmp/'
+alias ct='cd ~/tmp'
+alias na='nvim ~/.aliases'
+alias nq='nvim ~/.config/qtile/config.py'
+alias logmeout='pkill -KILL -u tream'
+alias ls='ls --color=auto'
+alias timer="python projects/timer/timer.py $1"
+alias sz='source ~/.zshrc'
+alias nz='nvim ~/.zshrc'
+alias gd='./gd/Godot_v4.0-beta16_linux.x86_64'
+alias nc='nvim ~/.config/nvim'
+alias vite="npm create vite@latest"
+alias config="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
+alias n="nvim"
+alias o="nvim .oh-my-zsh/custom/plugins/zsh-vi-mode/"
+alias c="clear"
+alias wifis="nmcli device wifi"
