@@ -6,9 +6,9 @@ HISTSIZE=250
 HISTFILESIZE=10000000
 export HISTTIMEFORMAT='%F %T, '
 
-export PATH=$PATH:/home/tream/.cargo/bin
-export PATH=$PATH:/home/tream/.local/bin
-export PATH=$PATH:/home/tream/.local/share/nvim/mason/bin
+export PATH=$PATH:~/.cargo/bin
+export PATH=$PATH:~/.local/bin
+export PATH=$PATH:~/.local/share/nvim/mason/bin
 
 mcd() {
     mkdir "$1" && cd "$1"

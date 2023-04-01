@@ -16,9 +16,9 @@ export HISTTIMEFORMAT='%F %T, '
 PS1='[\u@\h \W]\$ '
 
 
-export PATH=$PATH:/home/tream/.cargo/bin
-export PATH=$PATH:/home/tream/.local/bin
-export PATH=$PATH:/home/tream/.local/share/nvim/mason/bin
+export PATH=$PATH:~/.cargo/bin
+export PATH=$PATH:~/.local/bin
+export PATH=$PATH:~/.local/share/nvim/mason/bin
 # export LANG=ja_JP.UTF-8
 
 mcd() {
