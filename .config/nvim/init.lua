@@ -2,7 +2,7 @@ vim.g.loaded_netrw = 0
 vim.g.loaded_netrwPlugin = 0
 require('user.settings')
 require("user.plugins")
-require("user.color")
+require("user.colorscheme")
 require("user.dashboard")
 require("user.treesitter")
 require('user.nvim-tree')
@@ -30,8 +30,10 @@ require("user.sniprun")
 require("user.vim-illuminate")
 require("user.neoscroll")
 require("user.dapui")
-require("neodev").setup({
-  library = { plugins = { "nvim-dap-ui" }, types = true },
-  ...
-})
+
 require("user.harpoon")
+
+require("user.color-picker")
+require("user.neodev")
+require("user.colorizer")
+require("user.whichkey")

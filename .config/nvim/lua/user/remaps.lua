@@ -69,7 +69,11 @@ nnoremap('<leader>to', '<Cmd>Telescope oldfiles<CR>')
 nnoremap ('<leader>ft', '<Cmd>silent !firefox %<CR>')
 
 
-
+-- window navigation --
+nnoremap('<C-w>e', '<C-w>j')
+nnoremap('<C-w>i', '<C-w>k')
+nnoremap('<C-w>o', '<C-w>l')
+nnoremap('<C-w>n', '<C-w>h')
 
 -- Custom functions --
 --[[ function close_float()

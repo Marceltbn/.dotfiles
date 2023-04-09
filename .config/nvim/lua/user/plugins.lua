@@ -113,9 +113,7 @@ return packer.startup(function(use)
 
   -- toggleterm
   use {
-    "akinsho/toggleterm.nvim", tag = '*', config = function()
-    require("toggleterm").setup()
-  end}
+    "akinsho/toggleterm.nvim", tag = '*' }
 
   --
   use {'akinsho/bufferline.nvim', tag = "v3.*"}
@@ -132,12 +130,8 @@ return packer.startup(function(use)
  })
 
   -- Which-key
-  use {
-  "folke/which-key.nvim",
-  config = function()
-    require("which-key").setup { }
-  end }
-
+  use { "folke/which-key.nvim"}
+  
   -- Magma nvim Jupyter
  --use { 'dccsillag/magma-nvim', run = ':UpdateRemotePlugins' }
 
@@ -196,6 +190,15 @@ return packer.startup(function(use)
   use "folke/neodev.nvim"
 
   use "ThePrimeagen/harpoon"
+
+  use "norcalli/nvim-colorizer.lua"
+
+  use ({"ziontee113/color-picker.nvim",
+      config = function()
+          require("color-picker")
+      end,
+  })
+  use 'rktjmp/lush.nvim'
 
   if PACKER_BOOTSTRAP then
     require("packer").sync()

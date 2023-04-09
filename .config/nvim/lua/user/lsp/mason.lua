@@ -8,6 +8,7 @@ local servers = {
     "rust_analyzer",
     "tsserver",
     "bashls",
+    "svelte",
 }
 
 local settings = {
