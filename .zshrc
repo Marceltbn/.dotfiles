@@ -88,3 +88,7 @@ bindkey -M vicmd 'n' vi-backward-char
 bindkey -M vicmd 'q' backward-word
 bindkey -M vicmd 't' vi-add-next
 bindkey -M vicmd 'a' vi-insert
+bindkey -M vicmd 'A' vi-insert-bol
+bindkey -M vicmd 'T' vi-add-eol
+bindkey -M vicmd 'i' vi-up-line-or-history
+bindkey -M vicmd 'e' vi-down-line-or-history
