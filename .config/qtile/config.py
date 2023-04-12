@@ -25,16 +25,26 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+from typing import DefaultDict
 from libqtile import bar, layout, widget
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
-
 
 mod = "mod4"
 terminal = "kitty"
 
 
 keys = [
+    Key([mod], 'f', lazy.spawn('firefox'), desc='Launch Firefox'),
+    Key([mod], 't', lazy.spawn('kitty'), desc='Launch Firefox'),
+    Key([mod], 'b', lazy.spawn('brave-nightly'), desc='Launch Firefox'),
+    Key([mod], 'p', lazy.spawn('obsidian'), desc='Launch Firefox'),
+    Key([mod], 'l', lazy.spawn('librewolf'), desc='Launch Firefox'),
+    Key([mod, "shift"], 'v', lazy.spawn('sudo virt-manager'), desc='Launch Firefox'),
+    Key([mod, "shift", "control"], "F9", lazy.spawn("playerctl play-pause")),
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer sset Master 10%+")),
+    Key([], "XF86AudioLowerVolume", lazy.spawn("amixer sset Master 10%-")),
+    Key([mod], 'f', lazy.spawn('firefox'), desc='Launch Firefox'),
     Key([mod], 'period', lazy.next_screen(), desc='Next monitor'),
     # A list of available commands that can be bound to keys can be found
     # at https://docs.qtile.org/en/latest/manual/config/lazy.html
@@ -119,7 +129,7 @@ layouts = [
 ]
 
 widget_defaults = dict(
-    font="sans",
+    font="JetBrainsMono Nerd Font Mono",
     fontsize=12,
     padding=3,
 )
@@ -128,9 +138,36 @@ extension_defaults = widget_defaults.copy()
 screens = [
     Screen(
         wallpaper="~/wallpapers/eagle-master-wlop-4k-js.jpg",
-        wallpaper_mode="stretch",
+        wallpaper_mode="fill",
 
-        bottom=bar.Bar(
+        top=bar.Bar(
+            [
+                widget.Wlan(),
+                widget.CurrentLayout(),
+                widget.GroupBox(),
+                widget.Prompt(),
+                widget.WindowName(),
+                widget.Chord(
+                    chords_colors={
+                        "launch": ("#ff0000", "#ffffff"),
+                    },
+                    name_transform=lambda name: name.upper(),
+                ),
+                # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
+                # widget.StatusNotifier(),
+                widget.Systray(),
+                widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
+            ],
+            24,
+            # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
+            # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
+        ),
+    ),
+    Screen(
+        wallpaper="~/wallpapers/eagle-master-wlop-4k-js.jpg",
+        wallpaper_mode="fill",
+
+        top=bar.Bar(
             [
                 widget.CurrentLayout(),
                 widget.GroupBox(),
@@ -142,13 +179,10 @@ screens = [
                     },
                     name_transform=lambda name: name.upper(),
                 ),
-                widget.TextBox("default config", name="default"),
-                widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
                 # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
                 # widget.StatusNotifier(),
                 widget.Systray(),
                 widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
-                widget.QuickExit(),
             ],
             24,
             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
