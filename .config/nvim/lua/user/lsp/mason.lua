@@ -9,6 +9,7 @@ local servers = {
     "tsserver",
     "bashls",
     "svelte",
+    "tailwindcss",
 }
 
 local settings = {
@@ -28,6 +29,13 @@ require("mason").setup(settings)
 require("mason-lspconfig").setup({
 	ensure_installed = servers,
 	automatic_installation = true,
+})
+
+require("mason-nvim-dap").setup({
+    ensure_installed = {"js"},
+    automatic_installation = true,
+    automatic_setup = true,
+    handlers = {},
 })
 
 local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
@@ -52,4 +60,7 @@ for _, server in pairs(servers) do
 
 	lspconfig[server].setup(opts)
 end
+
+
+
 

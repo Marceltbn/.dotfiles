@@ -6,6 +6,13 @@ local xnoremap = remap.xnoremap
 local nmap = remap.nmap
 
 
+
+-- basic remaps
+nnoremap("x", '"_x')
+nnoremap("<leader>dd", '"dd')
+vnoremap("x", '"_x')
+vnoremap("<leader>dd", '"dd')
+
 -- Colemak basic remap --
 nnoremap('n', 'h')
 vnoremap('n', 'h')
@@ -49,8 +56,7 @@ nnoremap('k', 'e')
 vnoremap('k', 'e')
 -- nnoremap('K', 'E')
 -- vnoremap('K', 'E')
--- ea for /search up 
-
+-- ea for /search up
 
 -- Reconfig --
 nnoremap('<C-d>', '<C-d>zz')
@@ -66,8 +72,7 @@ nnoremap('<leader>tf', '<Cmd>Telescope find_files<CR>')
 nnoremap('<leader>to', '<Cmd>Telescope oldfiles<CR>')
 
 -- Open firefox --
-nnoremap ('<leader>ft', '<Cmd>silent !firefox %<CR>')
-
+nnoremap('<leader>ft', '<Cmd>silent !firefox %<CR>')
 
 -- window navigation --
 nnoremap('<C-w>e', '<C-w>j')
@@ -75,22 +80,19 @@ nnoremap('<C-w>i', '<C-w>k')
 nnoremap('<C-w>o', '<C-w>l')
 nnoremap('<C-w>n', '<C-w>h')
 
--- Custom functions --
---[[ function close_float()
-	for _, win in ipairs(vim.api.nvim_list_wins()) do
-		local config = vim.api.nvim_win_get_config(win)
-		if config.relative ~= "" then
-			vim.api.nvim_win_close(win, false)
-			print("Closing window", win)
-		end
-	end
-end ]]
-
 -- Custom maps --
-nnoremap ('<silent> gx', ':!open <cWORD><cr>')
+nnoremap('<silent> gx', ':!open <cWORD><cr>')
 -- nnoremap("<leader>c", "<Cmd>lua close_float()<CR>")
 
+-- formatting
+nnoremap("<leader>fb", "<CMD>:lua vim.lsp.buf.format()<CR>")
 
 -- Debugui
-nnoremap ('<leader>du', '<CMD>:lua require("dapui").toggle()<CR>')
+nnoremap('<leader>du', '<CMD>:lua require("dapui").toggle()<CR>')
 nnoremap('<leader>df', '<CMD>DapToggleBreakpoint<CR>')
+
+-- Harpoon 
+nnoremap('<leader>ht', '<CMD>:lua require("harpoon.ui").toggle_quick_menu()<CR>')
+nnoremap('<leader>ha', '<CMD>:lua require("harpoon.ui").add_file()<CR>')
+nnoremap('<leader>ho', '<CMD>:lua require("harpoon.ui").nav_next()<CR>')
+nnoremap('<leader>hn', '<CMD>:lua require("harpoon.ui").nav_prev()<CR>')

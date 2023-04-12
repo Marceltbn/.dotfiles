@@ -76,7 +76,7 @@ M.on_attach = function(client, bufnr)
 		client.server_capabilities.documentFormattingProvider = false
 	end
 
-	if client.name == "lua_ls" then
+	--[[ if client.name == "lua_ls" then
 		client.server_capabilities.documentFormattingProvider = false
 	end
 
@@ -86,7 +86,7 @@ M.on_attach = function(client, bufnr)
 
  	if client.name == "rust_analyzer" then
 		client.server_capabilities.documentFormattingProvider = true
-	end
+	end ]]
 
 	lsp_keymaps(bufnr)
 	local status_ok, illuminate = pcall(require, "illuminate")

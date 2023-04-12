@@ -78,9 +78,8 @@ local theme = lush(function()
 
     -- lush-spec statements are in the form:
     --
-    WhichKeyDesc {
-        fg = hsl(205, 100, 65)
-    },
+    WhichKeyDesc { fg = hsl(205, 100, 65) },
+    EndOfBuffer { gui = "#000"},
     --   <HighlightGroupName> { bg = <hsl>|<string>,
     --                          fg = <hsl>|<string>,
     --                          sp = <hsl>|<string>,
@@ -116,7 +115,7 @@ local theme = lush(function()
     -- CursorColumn { CursorLine },
 
     -- We can make white space characters slightly visible
-    -- Whitespace { fg = Normal.bg.desaturate(25).lighten(25) },
+    ehitespace { fg = Normal.bg.desaturate(25).lighten(25) },
 
     -- We can inherit properties if we want to tweak a group slightly
     -- Note: This looks similar to a link, but the defined group will have its
@@ -137,8 +136,8 @@ local theme = lush(function()
     -- try not to pick names that might end up being used by something else.
     --
     -- CamelCase is by tradition but you don't have to use it.
-    search_base  { bg = hsl(252, 52, 52), fg = hsl(52, 10, 10) },
-    Search       { search_base },
+    -- search_base  { bg = hsl(52, 52, 52), fg = hsl(52, 10, 10) },
+    -- Search       { search_base },
     -- IncSearch    { bg = search_base.bg.ro(-20), fg = search_base.fg.da(90) },
 
     -- We can also mix colours together
@@ -150,7 +149,5 @@ local theme = lush(function()
   }
 end)
 
--- return our parsed theme for extension or use else where.
 return theme
 
--- vi:nowrap:number

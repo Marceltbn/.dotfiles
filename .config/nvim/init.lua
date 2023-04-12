@@ -30,10 +30,12 @@ require("user.sniprun")
 require("user.vim-illuminate")
 require("user.neoscroll")
 require("user.dapui")
-
 require("user.harpoon")
-
 require("user.color-picker")
 require("user.neodev")
 require("user.colorizer")
 require("user.whichkey")
+
+require('nvim-ts-autotag').setup()
+require('user.colors')
+-- require('user.dap-vscode-js')

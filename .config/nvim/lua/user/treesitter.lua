@@ -1,4 +1,7 @@
 require'nvim-treesitter.configs'.setup {
+    autotag = {
+        enabled = true,
+    },
     ensure_installed = "all",
     sync_install = false,
 
