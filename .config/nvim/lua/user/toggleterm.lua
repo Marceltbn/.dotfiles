@@ -13,7 +13,7 @@ toggleterm.setup({
 	start_in_insert = true,
 	insert_mappings = true,
 	persist_size = true,
-	direction = "horizontal", -- float
+	direction = "float", -- float horizontal vertical
 	close_on_exit = true,
 	shell = vim.o.shell,
 	float_opts = {
@@ -38,12 +38,14 @@ end
 
 vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
 
+-- https://github.com/akinsho/toggleterm.nvim#custom-terminals
 local Terminal = require("toggleterm.terminal").Terminal
--- local lazygit = Terminal:new({ cmd = "lazygit", hidden = true })
+local lazygit = Terminal:new({ cmd = "lazygit", hidden = true, direction = "float" })
 
--- function _LAZYGIT_TOGGLE()
---	lazygit:toggle()
--- end
+function _LAZYGIT_TOGGLE()
+	lazygit:toggle()
+end
+
 
 local node = Terminal:new({ cmd = "node", hidden = true })
 

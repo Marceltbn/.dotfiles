@@ -9,7 +9,7 @@ export HISTTIMEFORMAT='%F %T, '
 export PATH=$PATH:~/.cargo/bin
 export PATH=$PATH:~/.local/bin
 export PATH=$PATH:~/.local/share/nvim/mason/bin
-
+# export NODE_PATH=/usr/lib/node_modules
 mcd() {
     mkdir "$1" && cd "$1"
 }
@@ -17,7 +17,6 @@ mcd() {
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
-
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -79,6 +78,7 @@ plugins=(
 #    tmux
 )
 
+# source /usr/share/nvm/init-nvm.sh
 source $ZSH/oh-my-zsh.sh
 export LANG=en_US.UTF-8
 
@@ -92,3 +92,8 @@ bindkey -M vicmd 'A' vi-insert-bol
 bindkey -M vicmd 'T' vi-add-eol
 bindkey -M vicmd 'i' vi-up-line-or-history
 bindkey -M vicmd 'e' vi-down-line-or-history
+
+# fnm
+export PATH="/home/tream/.local/share/fnm:$PATH"
+eval "`fnm env`"
+# eval "$(fnm env --use-on-cd)"

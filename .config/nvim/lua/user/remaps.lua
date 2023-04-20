@@ -12,6 +12,9 @@ nnoremap("x", '"_x')
 nnoremap("<leader>dd", '"dd')
 vnoremap("x", '"_x')
 vnoremap("<leader>dd", '"dd')
+nnoremap(":", "<CMD>FineCmdline<CR>")
+nnoremap("<leader>:", ":")
+nnoremap("<C-q>", "<CMD>q<CR>")
 
 -- Colemak basic remap --
 nnoremap('n', 'h')
@@ -65,11 +68,15 @@ nnoremap('<C-u>', '<C-u>zz')
 -- Nvim-tree --
 nnoremap('<leader>nt', '<Cmd>NvimTreeToggle<CR>')
 nnoremap('<leader>nn', '<Cmd>NvimTreeFocus<CR>')
-nnoremap('<leader>tt', '<Cmd>ToggleTerm<CR>')
+
+-- toggle term
+nnoremap('<leader>tt', '<Cmd>ToggleTerm<CR><CMD>TransparentEnable<CR>')
+nnoremap('<leader>lg', '<Cmd>lua _LAZYGIT_TOGGLE()<CR>')
 
 -- Telescope --
 nnoremap('<leader>tf', '<Cmd>Telescope find_files<CR>')
 nnoremap('<leader>to', '<Cmd>Telescope oldfiles<CR>')
+nnoremap('<leader>th', '<Cmd>Telescope highlights<CR>')
 
 -- Open firefox --
 nnoremap('<leader>ft', '<Cmd>silent !firefox %<CR>')
@@ -87,12 +94,21 @@ nnoremap('<silent> gx', ':!open <cWORD><cr>')
 -- formatting
 nnoremap("<leader>fb", "<CMD>:lua vim.lsp.buf.format()<CR>")
 
+-- Lsp 
+nnoremap("<leader>tt", "<CMD>TroubleToggle<CR>")
+nnoremap("<leader>ta", "<CMD>Trouble<CR>")
+
 -- Debugui
 nnoremap('<leader>du', '<CMD>:lua require("dapui").toggle()<CR>')
 nnoremap('<leader>df', '<CMD>DapToggleBreakpoint<CR>')
 
 -- Harpoon 
-nnoremap('<leader>ht', '<CMD>:lua require("harpoon.ui").toggle_quick_menu()<CR>')
-nnoremap('<leader>ha', '<CMD>:lua require("harpoon.ui").add_file()<CR>')
+nnoremap('<leader>hh', '<CMD>:lua require("harpoon.ui").toggle_quick_menu()<CR>')
+nnoremap('<leader>ha', '<CMD>:lua require("harpoon.mark").add_file()<CR>')
 nnoremap('<leader>ho', '<CMD>:lua require("harpoon.ui").nav_next()<CR>')
 nnoremap('<leader>hn', '<CMD>:lua require("harpoon.ui").nav_prev()<CR>')
+
+-- obsidian
+
+-- 
+

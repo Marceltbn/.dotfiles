@@ -1,41 +1,21 @@
-
-# Copyright (c) 2010 Aldo Cortesi
-# Copyright (c) 2010, 2014 dequis
-# Copyright (c) 2012 Randall Ma
-# Copyright (c) 2012-2014 Tycho Andersen
-# Copyright (c) 2012 Craig Barnes
-# Copyright (c) 2013 horsik
-# Copyright (c) 2013 Tao Sauvage
-#
-# Permission is hereby granted, free of charge, to any person obtaining a copy
-# of this software and associated documentation files (the "Software"), to deal
-# in the Software without restriction, including without limitation the rights
-# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-# copies of the Software, and to permit persons to whom the Software is
-# furnished to do so, subject to the following conditions:
-#
-# The above copyright notice and this permission notice shall be included in
-# all copies or substantial portions of the Software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-# SOFTWARE.
-
+import os
+import subprocess
 from typing import DefaultDict
-from libqtile import bar, layout, widget
+from libqtile import bar, layout, widget, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 
 mod = "mod4"
 terminal = "kitty"
 
+@hook.subscribe.startup
+def autostart():
+    home = os.path.expanduser('~/.config/qtile/autostart.sh')
+    subprocess.Popen([home])
 
 keys = [
     Key([mod], 'f', lazy.spawn('firefox'), desc='Launch Firefox'),
+    Key([mod], 'd', lazy.spawn('thunar'), desc='Launch Firefox'),
     Key([mod], 't', lazy.spawn('kitty'), desc='Launch Firefox'),
     Key([mod], 'b', lazy.spawn('brave-nightly'), desc='Launch Firefox'),
     Key([mod], 'p', lazy.spawn('obsidian'), desc='Launch Firefox'),
@@ -66,7 +46,7 @@ keys = [
     Key([mod, "control"], "o", lazy.layout.grow_right(), desc="Grow window to the right"),
     Key([mod, "control"], "e", lazy.layout.grow_down(), desc="Grow window down"),
     Key([mod, "control"], "i", lazy.layout.grow_up(), desc="Grow window up"),
-    Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
+    Key([mod], "z", lazy.layout.normalize(), desc="Reset all window sizes"),
     # Toggle between split and unsplit sides of stack.
     # Split = all windows displayed
     # Unsplit = 1 window displayed, like Max layout, but still with
@@ -113,7 +93,7 @@ for i in groups:
     )
 
 layouts = [
-    layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=4),
+    layout.Columns(border_focus_stack=["#F75f5f", "##f3d3d"], border_focus="#aa00ff", border_normal="#101050", border_width=2),
     layout.Max(),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
@@ -133,54 +113,44 @@ widget_defaults = dict(
     fontsize=12,
     padding=3,
 )
+
 extension_defaults = widget_defaults.copy()
 
 screens = [
     Screen(
-        wallpaper="~/wallpapers/eagle-master-wlop-4k-js.jpg",
+        wallpaper="~/wallpapers/lampion.jpg",
         wallpaper_mode="fill",
 
         top=bar.Bar(
             [
-                widget.Wlan(),
+                widget.CurrentScreen(),
                 widget.CurrentLayout(),
-                widget.GroupBox(),
+                widget.GroupBox(this_current_screen_border="#D00000", this_screen_border="#A03030"),
                 widget.Prompt(),
                 widget.WindowName(),
-                widget.Chord(
-                    chords_colors={
-                        "launch": ("#ff0000", "#ffffff"),
-                    },
-                    name_transform=lambda name: name.upper(),
-                ),
-                # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
-                # widget.StatusNotifier(),
+                widget.PulseVolume(update_interval=0.0001), # 0 makes cpu 100%
+                widget.Wlan(),
+                widget.Wallpaper(directory="~/wallpapers", background="#000", label="Wlp"),
                 widget.Systray(),
                 widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
             ],
             24,
             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
-            # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
+      #       border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
         ),
     ),
     Screen(
-        wallpaper="~/wallpapers/eagle-master-wlop-4k-js.jpg",
+        wallpaper="~/wallpapers/lampion.jpg",
         wallpaper_mode="fill",
 
         top=bar.Bar(
-            [
+            [   
+                widget.CurrentScreen(),
                 widget.CurrentLayout(),
-                widget.GroupBox(),
+                widget.GroupBox(this_current_screen_border="#D00000", this_screen_border="#A03030"),
                 widget.Prompt(),
                 widget.WindowName(),
-                widget.Chord(
-                    chords_colors={
-                        "launch": ("#ff0000", "#ffffff"),
-                    },
-                    name_transform=lambda name: name.upper(),
-                ),
-                # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
-                # widget.StatusNotifier(),
+                widget.PulseVolume(),
                 widget.Systray(),
                 widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
             ],
@@ -226,12 +196,4 @@ auto_minimize = True
 # When using the Wayland backend, this can be used to configure input devices.
 wl_input_rules = None
 
-# XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
-# string besides java UI toolkits; you can see several discussions on the
-# mailing lists, GitHub issues, and other WM documentation that suggest setting
-# this string if your java app doesn't work correctly. We may as well just lie
-# and say that we're a working one by default.
-#
-# We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
-# java that happens to be on java's whitelist.
 wmname = "LG3D"

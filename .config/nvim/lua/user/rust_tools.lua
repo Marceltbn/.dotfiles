@@ -1,4 +1,4 @@
-local rt = require("rust-tools")
+--[[ local rt = require("rust-tools")
 
 local mason_registry = require("mason-registry")
 local codelldb_root = mason_registry.get_package("codelldb"):get_install_path() .. "/extension/"
@@ -15,4 +15,4 @@ rt.setup({
         end,
         dap = { adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path) },
     },
-})
+}) ]]
