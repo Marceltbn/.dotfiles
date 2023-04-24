@@ -1,0 +1,12 @@
+map e scrollDown
+map i scrollUp
+map n scrollLeft
+map o scrollRight
+unmap N
+map N previousTab
+unmap E
+map E goBack
+unmap I
+map I goForward
+unmap O
+map O nextTab
